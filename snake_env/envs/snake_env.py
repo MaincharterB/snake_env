@@ -3,6 +3,7 @@ import numpy as np
 
 from snake_env.enums.actions import BaseActions
 from snake_env.food_placers.factory import get_placer
+from snake_env.memory_managers.memory_managers import BasicMemoryManager
 from snake_env.observators.observators import BasicObservator
 from snake_env.renderers.factory import get_renderer
 from snake_env.steppers.steppers import BasicStepper
@@ -19,11 +20,13 @@ class SimpleSnakeEnv(gym.Env):
         self.placer =  get_placer(args['food_config'])
         self.stepper = BasicStepper()
         self.observator = BasicObservator()
+        self.memory_manager = BasicMemoryManager()
         
     def step(self, action):
-        return super().step(action)
+        return self.stepper.step(action, self.memory_manager)
     
     def reset(self, seed=None, options=None):
+        self.memory_manager.clear()
         return super().reset(seed=seed, options=options)
     
     def render(self):
