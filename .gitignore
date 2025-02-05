@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+main_test.ipynb
+snake_env/tensorboard_log/*
+snake_env/tensorboard_log/DQN
+snake_env/tensorboard_log
+tensorboard_log

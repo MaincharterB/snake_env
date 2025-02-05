@@ -1,5 +1,7 @@
 from abc import abstractmethod, ABC
 from typing import Any
+
+from snake_env.enums.actions import Direction, Status
 class MemoryManager(ABC):
     @abstractmethod
     def put(self, data):
@@ -21,10 +23,22 @@ class BasicMemoryManager(MemoryManager):
         self.__dict__[key] = value
         
     def __init__(self, **args: dict[str, Any]):
-        pass
+        super(BasicMemoryManager, self).__init__()
+        self.snake_positions = []
+        self.food_positions = []
+        self.direction = None
+        self.mapsize = [args['width'], args['height']]
+        self.status = Status.ALIVE
+        self.args = args
+        
+    def put(self, key, value):
+        self[key] = value
     
-    def put(self, data):
-        pass
+    def get(self, key):
+        return self[key]
     
-    def get(self):
-        pass    
+    def clear(self):
+        self.snake_positions = []
+        self.food_positions = []
+        self.direction = None
+        self.status = Status.ALIVE
