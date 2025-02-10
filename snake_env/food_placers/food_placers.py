@@ -46,6 +46,7 @@ class FoodPlacer():
                 y = np.random.randint(0, self.memory_manager['mapsize'][1])
                 if (x, y) in free_space and abs(x - self.memory_manager['snake_positions'][0][0]) < 2 and abs(y - self.memory_manager['snake_positions'][0][1]) < 2:
                     food_positions.append((x, y))
+                    break
         self.memory_manager["food_positions"] = food_positions
     
     def place_food(self):
