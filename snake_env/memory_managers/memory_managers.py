@@ -27,6 +27,7 @@ class BasicMemoryManager(MemoryManager):
         self.snake_positions = []
         self.food_positions = []
         self.direction = None
+        self.linked_paths = args['linked_paths']
         self.mapsize = [args['width'], args['height']]
         self.status = Status.ALIVE
         self.args = args
